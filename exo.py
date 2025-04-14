@@ -30,15 +30,13 @@ def dechiffrer(msg):
         resultat = ''
         for lettre in msg:
             if lettre in list:
-            index = list.index(lettre)
-            index_decale =  (index - decal) % n
-            resultat += list[index_decale]
-        else:
-            resultat += lettre
+                index = list.index(lettre)
+                index_decale =  (index - decal) % n
+                resultat += list[index_decale]
+            else:
+                resultat += lettre
     return resultat
 
-possibilites = dechiffrer(msg)
-
 print("\nPossibilités de déchiffrement :")
-for decalage, message_decode in possibilites.items():
-    print(f"Décalage: {decalage:2}, Message déchiffré: {message_decode}")
+for decal, message_decode in dechiffrer(msg):
+    print(f"Décalage: {decal:2}, Message déchiffré: {message_decode}")
