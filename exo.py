@@ -1,3 +1,4 @@
+
 majuscules = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
 minuscules = [chr(i) for i in range(ord('a'), ord('z') + 1)]
 chiffres = [str(i) for i in range(10)]
@@ -24,19 +25,22 @@ print("Message chiffré :", message_code)
 msg = input("Phrase à dechiffrer : ")
 
 def dechiffrer(msg):
-    resultat = ''
+    resultat = {}
     n = len(list)
     for decal in range(1, n):
-        resultat = ''
+        decode = ''
         for lettre in msg:
             if lettre in list:
                 index = list.index(lettre)
                 index_decale =  (index - decal) % n
-                resultat += list[index_decale]
+                decode += list[index_decale]
             else:
-                resultat += lettre
+                decode += lettre
+        resultat[decal] = decode
     return resultat
 
+posibilities = dechiffrer(msg)
+
 print("\nPossibilités de déchiffrement :")
-for decal, message_decode in dechiffrer(msg):
-    print(f"Décalage: {decal:2}, Message déchiffré: {message_decode}")
+for decal, decode in dechiffrer(msg).items():
+    print(f"Décalage: {decal:2}, Message déchiffré: {decode}")
