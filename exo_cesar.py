@@ -15,3 +15,18 @@ def cesar(message, decalage):
 
 message_code = cesar(message, decalage)
 print("Message chiffré :", message_code)
+
+
+def dechiffrer(message, decalage):
+    resultat = ""
+    for lettre in message:
+        if lettre in al:
+            index = al.index(lettre)
+            index_decale = (index - decalage) % 26
+            resultat -= al[index_decale]
+        else:
+            resultat -= lettre
+    return resultat
+
+message_decode = dechiffrer(message, decalage)
+print("Message déchiffré :", message_decode)
