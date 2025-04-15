@@ -1,17 +1,37 @@
-al = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-message = input("Entrez votre phrase : ")
-decalage = int(input("Entrez le décalage : "))
+import random
 
-def cesar(message, decalage):
-    resultat = ""
-    for lettre in message:
-        if lettre in al:
-            index = al.index(lettre)
-            index_decale = (index + decalage) % 26
-            resultat += al[index_decale]
+password = input("Entrez votre mot de passe : ")
+cle = input("Entrez la clé de chiffrement : ")
+
+def chiffrer_vigenere(password, cle):
+    majuscules = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
+    minuscules = [chr(i) for i in range(ord('a'), ord('z') + 1)]
+    chiffres = [str(i) for i in range(10)]
+    liste = majuscules + minuscules + chiffres
+
+    result = ''
+    cle_complete = ''
+
+    # Étendre la clé à la taille du mot de passe
+    while len(cle_complete) < len(password):
+        cle_complete += cle
+    cle_complete = cle_complete[:len(password)]
+
+    print("Clé utilisée :", cle_complete)
+
+    for i in range(len(password)):
+        lettre = password[i]
+        lettre_cle = cle_complete[i]
+
+        if lettre in liste and lettre_cle in liste:
+            index_lettre = liste.index(lettre)
+            index_cle = liste.index(lettre_cle)
+            index_decale = (index_lettre + index_cle) % len(liste)
+            result += liste[index_decale]
         else:
-            resultat += lettre
-    return resultat
+            result += lettre  # Ne pas chiffrer les caractères spéciaux
 
-message_code = cesar(message, decalage)
+    return result
+
+message_code = chiffrer_vigenere(password, cle)
 print("Message chiffré :", message_code)
