@@ -10,9 +10,9 @@ message = input("Phrase à chiffrer : ")
 
 
 def chiffrer(message):
-    decalage = random.randint(1,25)
     result = ''
     n = len(list)
+    decalage = random.randint(1,n+1)
     for lettre in message:
         if lettre in list:
             index = list.index(lettre)
