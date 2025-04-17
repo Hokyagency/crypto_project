@@ -1,32 +1,47 @@
-al = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-message = input("Entrez votre phrase : ")
-decalage = int(input("Entrez le décalage : "))
 
-def cesar(message, decalage):
-    resultat = ""
+majuscules = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
+minuscules = [chr(i) for i in range(ord('a'), ord('z') + 1)]
+chiffres = [str(i) for i in range(10)]
+
+list = majuscules + minuscules + chiffres
+
+message = input("Phrase à chiffrer : ")
+decalage = int(input("décalage souhaité : "))
+
+def chiffrer(message, decalage):
+    result = ''
+    n = len(list)
     for lettre in message:
-        if lettre in al:
-            index = al.index(lettre)
-            index_decale = (index + decalage) % 26
-            resultat += al[index_decale]
+        if lettre in list:
+            index = list.index(lettre)
+            index_decale =  (index + decalage) % n
+            result += list[index_decale]
         else:
-            resultat += lettre
-    return resultat
+            result += lettre
+    return result
 
-message_code = cesar(message, decalage)
+message_code = chiffrer(message, decalage)
 print("Message chiffré :", message_code)
 
+msg = input("Phrase à dechiffrer : ")
 
-def dechiffrer(message, decalage):
-    resultat = ""
-    for lettre in message:
-        if lettre in al:
-            index = al.index(lettre)
-            index_decale = (index - decalage) % 26
-            resultat -= al[index_decale]
-        else:
-            resultat -= lettre
+def dechiffrer(msg):
+    resultat = {}
+    n = len(list)
+    for decal in range(1, n):
+        decode = ''
+        for lettre in msg:
+            if lettre in list:
+                index = list.index(lettre)
+                index_decale =  (index - decal) % n
+                decode += list[index_decale]
+            else:
+                decode += lettre
+        resultat[decal] = decode
     return resultat
 
-message_decode = dechiffrer(message, decalage)
-print("Message déchiffré :", message_decode)
+posibilities = dechiffrer(msg)
+
+print("\nPossibilités de déchiffrement :")
+for decal, decode in dechiffrer(msg).items():
+    print(f"Décalage: {decal:2}, Message déchiffré: {decode}")
