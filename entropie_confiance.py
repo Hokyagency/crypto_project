@@ -1,5 +1,4 @@
-import math
-import sys
+
 from entropie import calculer_entropie_mdp_clair
 
 def confiance(entropie_total):
