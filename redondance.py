@@ -1,4 +1,5 @@
 from entropie_confiance import *
+from entropie import *
 
 def redondance(entropie_total, longueur, L=8):
 
@@ -17,3 +18,8 @@ validation(entropie)
 
 longueur_mdp = len(mot_de_passe)
 redondance(entropie, longueur_mdp)
+
+
+#mettre dans le try les deux lignes ci-dessous
+#longueur_mdp = len(confirmed_password)
+#r, taux = redondance(entropie_mdp, longueur_mdp)
