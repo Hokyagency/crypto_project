@@ -27,9 +27,10 @@ def confiance(entropie_total):
 def validation(entropie_total):
     if entropie_total < 65:
         print("Votre mot de passe est trop faible, changez le.")
-        sys.exit()
+        #sys.exit()
     else:
         print("Le mot de passe à été validé avec succés.")
+
     validation(entropie_total)
 
     
